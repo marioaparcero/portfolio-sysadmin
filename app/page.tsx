@@ -531,6 +531,126 @@ export default function ProfessionalCyberPortfolio() {
             ))}
           </div>
 
+          {/* Contact Form */}
+          <div className="mt-16">
+            <Card className="bg-slate-900/70 border-blue-500/20 backdrop-blur-sm max-w-2xl mx-auto">
+              <CardHeader>
+                <CardTitle className="text-blue-400 text-2xl text-center">Envíame un Mensaje</CardTitle>
+                <CardDescription className="text-slate-300 text-center">
+                  ¿Tienes un proyecto en mente? Hablemos sobre cómo puedo ayudarte.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form
+                  className="space-y-6"
+                  onSubmit={(e) => {
+                    e.preventDefault()
+                    // Aquí puedes añadir la lógica de envío del formulario
+                    alert("Mensaje enviado! Te contactaré pronto.")
+                  }}
+                >
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium text-blue-400 mb-2">
+                        Nombre *
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        className="w-full px-4 py-3 bg-slate-800/50 border border-blue-500/30 rounded-lg text-white placeholder-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 focus:outline-none transition-all duration-300"
+                        placeholder="Tu nombre completo"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-blue-400 mb-2">
+                        Email *
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        className="w-full px-4 py-3 bg-slate-800/50 border border-blue-500/30 rounded-lg text-white placeholder-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 focus:outline-none transition-all duration-300"
+                        placeholder="tu@email.com"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="company" className="block text-sm font-medium text-blue-400 mb-2">
+                      Empresa / Organización
+                    </label>
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      className="w-full px-4 py-3 bg-slate-800/50 border border-blue-500/30 rounded-lg text-white placeholder-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 focus:outline-none transition-all duration-300"
+                      placeholder="Nombre de tu empresa (opcional)"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="subject" className="block text-sm font-medium text-blue-400 mb-2">
+                      Asunto *
+                    </label>
+                    <select
+                      id="subject"
+                      name="subject"
+                      required
+                      className="w-full px-4 py-3 bg-slate-800/50 border border-blue-500/30 rounded-lg text-white focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 focus:outline-none transition-all duration-300"
+                    >
+                      <option value="">Selecciona un tema</option>
+                      <option value="consulting">Consultoría en Sistemas</option>
+                      <option value="security">Auditoría de Seguridad</option>
+                      <option value="infrastructure">Infraestructura Cloud</option>
+                      <option value="automation">Automatización</option>
+                      <option value="collaboration">Colaboración</option>
+                      <option value="other">Otro</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-blue-400 mb-2">
+                      Mensaje *
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={5}
+                      required
+                      className="w-full px-4 py-3 bg-slate-800/50 border border-blue-500/30 rounded-lg text-white placeholder-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 focus:outline-none transition-all duration-300 resize-none"
+                      placeholder="Cuéntame sobre tu proyecto o consulta..."
+                    />
+                  </div>
+
+                  <div className="flex items-start space-x-3">
+                    <input
+                      type="checkbox"
+                      id="privacy"
+                      name="privacy"
+                      required
+                      className="mt-1 w-4 h-4 text-blue-600 bg-slate-800 border-blue-500/30 rounded focus:ring-blue-400 focus:ring-2"
+                    />
+                    <label htmlFor="privacy" className="text-sm text-slate-300">
+                      Acepto que mis datos sean utilizados para responder a mi consulta de acuerdo con la política de
+                      privacidad. *
+                    </label>
+                  </div>
+
+                  <Button
+                    type="submit"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg border border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 font-medium"
+                  >
+                    <Mail className="mr-2 h-5 w-5" />
+                    Enviar Mensaje
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+
           {/* Professional Notice */}
           <div className="mt-16 text-center">
             <div className="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 max-w-2xl mx-auto backdrop-blur-sm">
@@ -551,7 +671,7 @@ export default function ProfessionalCyberPortfolio() {
       <footer className="py-8 px-6 bg-slate-950 border-t border-blue-500/20 relative z-10">
         <div className="container mx-auto text-center text-slate-400">
           <p className="font-mono">
-            &copy; 2024 Mario Aparcero | Administrador de Sistemas | Todos los derechos reservados
+            &copy; 2025 Mario Aparcero | Administrador de Sistemas | Todos los derechos reservados
           </p>
           <p className="text-xs mt-2 text-blue-400">
             "La seguridad no es un producto, sino un proceso" - Bruce Schneier
