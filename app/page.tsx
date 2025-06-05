@@ -176,7 +176,8 @@ export default function ProfessionalCyberPortfolio() {
             <Button
               size="lg"
               variant="outline"
-              className="border-blue-500/50 text-blue-400 hover:bg-white/5 px-8 py-3 rounded-lg transition-all duration-300"
+              className="border-blue-500/50 text-blue-400 hover:bg-white-500/10 px-8 py-3 rounded-lg transition-all duration-300"
+              // className="border-blue-500/50 text-blue-400 hover:border-cyan-400 hover:bg-white/5 px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105"
               onClick={() => scrollToSection("proyectos")}
             >
               <Eye className="mr-2 h-4 w-4" />
