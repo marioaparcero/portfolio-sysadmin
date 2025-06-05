@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Github, Linkedin, Mail, Download, Shield, Lock, Eye, Network, Code, Search } from "lucide-react"
 import ReCAPTCHA from "react-google-recaptcha"
+import { useForm, ValidationError } from "@formspree/react"
 
 export default function ProfessionalCyberPortfolio() {
   const [currentRole, setCurrentRole] = useState(0)
@@ -13,6 +14,7 @@ export default function ProfessionalCyberPortfolio() {
   const [currentCommand, setCurrentCommand] = useState(0)
   const [matrixChars, setMatrixChars] = useState<string[]>([])
   const [captchaValue, setCaptchaValue] = useState<string | null>(null)
+  const [state, handleSubmit] = useForm("xqabadjy")
 
   const roles = [
     "Administrador de sistemas",
@@ -553,124 +555,139 @@ export default function ProfessionalCyberPortfolio() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form
-                  className="space-y-6"
-                  onSubmit={(e) => {
-                    e.preventDefault()
-                    if (!captchaValue) {
-                      alert("Por favor, verifica que no eres un robot.")
-                      return
-                    }
-                    // Aquí puedes añadir la lógica de envío del formulario
-                    alert("Mensaje enviado! Te contactaré pronto.")
-                  }}
-                >
-                  <div className="grid md:grid-cols-2 gap-4">
+                {state.succeeded ? (
+                  <p className="text-green-400 text-center text-lg py-8">¡Mensaje enviado! Te contactaré pronto.</p>
+                ) : (
+                  <form
+                    className="space-y-6"
+                    onSubmit={(e) => {
+                      if (!captchaValue) {
+                        e.preventDefault()
+                        alert("Por favor, verifica que no eres un robot.")
+                        return
+                      }
+                      handleSubmit(e)
+                    }}
+                  >
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <label htmlFor="name" className="block text-sm font-medium text-blue-400 mb-2">
+                          Nombre *
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          required
+                          className="w-full px-4 py-3 bg-slate-800/50 border border-blue-500/30 rounded-lg text-white placeholder-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 focus:outline-none transition-all duration-300"
+                          placeholder="Tu nombre completo"
+                        />
+                        <ValidationError prefix="Nombre" field="name" errors={state.errors} />
+                      </div>
+                      <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-blue-400 mb-2">
+                          Email *
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          required
+                          className="w-full px-4 py-3 bg-slate-800/50 border border-blue-500/30 rounded-lg text-white placeholder-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 focus:outline-none transition-all duration-300"
+                          placeholder="tu@email.com"
+                        />
+                        <ValidationError prefix="Email" field="email" errors={state.errors} />
+                      </div>
+                    </div>
+
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-blue-400 mb-2">
-                        Nombre *
+                      <label htmlFor="company" className="block text-sm font-medium text-blue-400 mb-2">
+                        Empresa / Organización
                       </label>
                       <input
                         type="text"
-                        id="name"
-                        name="name"
-                        required
+                        id="company"
+                        name="company"
                         className="w-full px-4 py-3 bg-slate-800/50 border border-blue-500/30 rounded-lg text-white placeholder-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 focus:outline-none transition-all duration-300"
-                        placeholder="Tu nombre completo"
+                        placeholder="Nombre de tu empresa (opcional)"
                       />
+                      <ValidationError prefix="Empresa" field="company" errors={state.errors} />
                     </div>
+
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-blue-400 mb-2">
-                        Email *
+                      <label htmlFor="subject" className="block text-sm font-medium text-blue-400 mb-2">
+                        Asunto *
                       </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
+                      <select
+                        id="subject"
+                        name="subject"
                         required
-                        className="w-full px-4 py-3 bg-slate-800/50 border border-blue-500/30 rounded-lg text-white placeholder-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 focus:outline-none transition-all duration-300"
-                        placeholder="tu@email.com"
+                        className="w-full px-4 py-3 bg-slate-800/50 border border-blue-500/30 rounded-lg text-white focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 focus:outline-none transition-all duration-300"
+                      >
+                        <option value="">Selecciona un tema</option>
+                        <option value="consulting">Consultoría en Sistemas</option>
+                        <option value="security">Auditoría de Seguridad</option>
+                        <option value="infrastructure">Infraestructura Cloud</option>
+                        <option value="automation">Automatización</option>
+                        <option value="collaboration">Colaboración</option>
+                        <option value="other">Otro</option>
+                      </select>
+                      <ValidationError prefix="Asunto" field="subject" errors={state.errors} />
+                    </div>
+
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-medium text-blue-400 mb-2">
+                        Mensaje *
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows={5}
+                        required
+                        className="w-full px-4 py-3 bg-slate-800/50 border border-blue-500/30 rounded-lg text-white placeholder-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 focus:outline-none transition-all duration-300 resize-none"
+                        placeholder="Cuéntame sobre tu proyecto o consulta..."
+                      />
+                      <ValidationError prefix="Mensaje" field="message" errors={state.errors} />
+                    </div>
+
+                    <div className="flex items-start space-x-3">
+                      <input
+                        type="checkbox"
+                        id="privacy"
+                        name="privacy"
+                        required
+                        className="mt-1 w-4 h-4 text-blue-600 bg-slate-800 border-blue-500/30 rounded focus:ring-blue-400 focus:ring-2"
+                      />
+                      <label htmlFor="privacy" className="text-sm text-slate-300">
+                        Acepto que mis datos sean utilizados para responder a mi consulta de acuerdo con la política de
+                        privacidad. *
+                      </label>
+                      <ValidationError prefix="Privacidad" field="privacy" errors={state.errors} />
+                    </div>
+
+                    <div className="flex justify-center">
+                      <ReCAPTCHA
+                        sitekey="6LetO1YrAAAAAEkFEnN21NnTY_f-67sM_AF5TceA"
+                        onChange={setCaptchaValue}
+                        theme="dark"
                       />
                     </div>
-                  </div>
 
-                  <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-blue-400 mb-2">
-                      Empresa / Organización
-                    </label>
-                    <input
-                      type="text"
-                      id="company"
-                      name="company"
-                      className="w-full px-4 py-3 bg-slate-800/50 border border-blue-500/30 rounded-lg text-white placeholder-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 focus:outline-none transition-all duration-300"
-                      placeholder="Nombre de tu empresa (opcional)"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-blue-400 mb-2">
-                      Asunto *
-                    </label>
-                    <select
-                      id="subject"
-                      name="subject"
-                      required
-                      className="w-full px-4 py-3 bg-slate-800/50 border border-blue-500/30 rounded-lg text-white focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 focus:outline-none transition-all duration-300"
+                    <Button
+                      type="submit"
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg border border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 font-medium"
+                      disabled={state.submitting}
                     >
-                      <option value="">Selecciona un tema</option>
-                      <option value="consulting">Consultoría en Sistemas</option>
-                      <option value="security">Auditoría de Seguridad</option>
-                      <option value="infrastructure">Infraestructura Cloud</option>
-                      <option value="automation">Automatización</option>
-                      <option value="collaboration">Colaboración</option>
-                      <option value="other">Otro</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-blue-400 mb-2">
-                      Mensaje *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={5}
-                      required
-                      className="w-full px-4 py-3 bg-slate-800/50 border border-blue-500/30 rounded-lg text-white placeholder-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 focus:outline-none transition-all duration-300 resize-none"
-                      placeholder="Cuéntame sobre tu proyecto o consulta..."
-                    />
-                  </div>
-
-                  <div className="flex items-start space-x-3">
-                    <input
-                      type="checkbox"
-                      id="privacy"
-                      name="privacy"
-                      required
-                      className="mt-1 w-4 h-4 text-blue-600 bg-slate-800 border-blue-500/30 rounded focus:ring-blue-400 focus:ring-2"
-                    />
-                    <label htmlFor="privacy" className="text-sm text-slate-300">
-                      Acepto que mis datos sean utilizados para responder a mi consulta de acuerdo con la política de
-                      privacidad. *
-                    </label>
-                  </div>
-
-                  <div className="flex justify-center">
-                    <ReCAPTCHA
-                      sitekey="6LetO1YrAAAAAEkFEnN21NnTY_f-67sM_AF5TceA"
-                      onChange={setCaptchaValue}
-                      theme="dark"
-                    />
-                  </div>
-
-                  <Button
-                    type="submit"
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg border border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 font-medium"
-                  >
-                    <Mail className="mr-2 h-5 w-5" />
-                    Enviar Mensaje
-                  </Button>
-                </form>
+                      <Mail className="mr-2 h-5 w-5" />
+                      {state.submitting ? "Enviando..." : "Enviar Mensaje"}
+                    </Button>
+                    {Array.isArray(state.errors) && state.errors.length > 0 && (
+                      <div className="text-red-400 text-center mt-2">
+                        Ha ocurrido un error. Por favor, revisa los campos e inténtalo de nuevo.
+                      </div>
+                    )}
+                  </form>
+                )}
               </CardContent>
             </Card>
           </div>
