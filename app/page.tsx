@@ -5,12 +5,14 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Github, Linkedin, Mail, Download, Shield, Lock, Eye, Network, Code, Search } from "lucide-react"
+import ReCAPTCHA from "react-google-recaptcha"
 
 export default function ProfessionalCyberPortfolio() {
   const [currentRole, setCurrentRole] = useState(0)
   const [typedText, setTypedText] = useState("")
   const [currentCommand, setCurrentCommand] = useState(0)
   const [matrixChars, setMatrixChars] = useState<string[]>([])
+  const [captchaValue, setCaptchaValue] = useState<string | null>(null)
 
   const roles = [
     "Administrador de sistemas",
@@ -555,6 +557,10 @@ export default function ProfessionalCyberPortfolio() {
                   className="space-y-6"
                   onSubmit={(e) => {
                     e.preventDefault()
+                    if (!captchaValue) {
+                      alert("Por favor, verifica que no eres un robot.")
+                      return
+                    }
                     // Aquí puedes añadir la lógica de envío del formulario
                     alert("Mensaje enviado! Te contactaré pronto.")
                   }}
@@ -647,6 +653,14 @@ export default function ProfessionalCyberPortfolio() {
                       Acepto que mis datos sean utilizados para responder a mi consulta de acuerdo con la política de
                       privacidad. *
                     </label>
+                  </div>
+
+                  <div className="flex justify-center">
+                    <ReCAPTCHA
+                      sitekey="6LetO1YrAAAAAEkFEnN21NnTY_f-67sM_AF5TceA"
+                      onChange={setCaptchaValue}
+                      theme="dark"
+                    />
                   </div>
 
                   <Button
