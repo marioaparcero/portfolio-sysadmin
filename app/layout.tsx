@@ -18,6 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* <link rel="icon" href="/favicon.svg" type="image/svg+xml" /> */}
+        <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
+        {/* <link rel="icon" href="/favicon.ico" /> */}
+        {/* Puedes agregar otros tamaños o formatos si lo deseas */}
+      </head>
       <body>{children}</body>
     </html>
   )
