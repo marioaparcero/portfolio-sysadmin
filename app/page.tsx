@@ -158,9 +158,10 @@ export default function ProfessionalCyberPortfolio() {
             <p className="text-xl text-slate-300 leading-relaxed mb-8">
               Soy un administrador de sistemas experimentado, apasionado por las tecnologías de código abierto, la
               ciberseguridad, la infraestructura en la nube y la automatización. Me especializo en la implementación y
-              el mantenimiento de sistemas fiables y seguros en diversas plataformas. Desde servidores locales hasta
-              configuraciones de nube híbrida, me aseguro de que todo funcione de forma fluida y eficiente.
+              el mantenimiento de sistemas fiables y seguros en diversas plataformas.
             </p>
+            {/* Desde servidores locales hasta
+              configuraciones de nube híbrida, me aseguro de que todo funcione de forma fluida y eficiente. */}
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -175,7 +176,7 @@ export default function ProfessionalCyberPortfolio() {
             <Button
               size="lg"
               variant="outline"
-              className="border-blue-500/50 text-blue-400 hover:bg-blue-500/10 px-8 py-3 rounded-lg transition-all duration-300"
+              className="border-blue-500/50 text-blue-400 hover:bg-white/5 px-8 py-3 rounded-lg transition-all duration-300"
               onClick={() => scrollToSection("proyectos")}
             >
               <Eye className="mr-2 h-4 w-4" />
