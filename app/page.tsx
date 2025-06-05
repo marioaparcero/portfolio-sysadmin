@@ -233,10 +233,18 @@ export default function ProfessionalCyberPortfolio() {
                       Ansible
                     </Badge>
                   </div>
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700 border border-blue-500/50">
-                    <Download className="mr-2 h-4 w-4" />
-                    Descargar PDF
-                  </Button>
+                  <a
+                    href="/Mario_Aparcero_CV_2025.pdf"
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full"
+                  >
+                    <Button className="w-full bg-blue-600 hover:bg-blue-700 border border-blue-500/50">
+                      <Download className="mr-2 h-4 w-4" />
+                      Descargar PDF
+                    </Button>
+                  </a>
                 </CardContent>
               </Card>
             </div>
