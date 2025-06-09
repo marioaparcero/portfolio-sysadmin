@@ -600,7 +600,7 @@ export default function ProfessionalCyberPortfolio() {
                       </div>
                     </div>
 
-                    <div>
+                    {/* <div>
                       <label htmlFor="company" className="block text-sm font-medium text-blue-400 mb-2">
                         Empresa / Organización
                       </label>
@@ -633,7 +633,7 @@ export default function ProfessionalCyberPortfolio() {
                         <option value="other">Otro</option>
                       </select>
                       <ValidationError prefix="Asunto" field="subject" errors={state.errors} />
-                    </div>
+                    </div> */}
 
                     <div>
                       <label htmlFor="message" className="block text-sm font-medium text-blue-400 mb-2">
