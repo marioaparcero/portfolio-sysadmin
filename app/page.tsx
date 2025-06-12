@@ -511,7 +511,7 @@ export default function ProfessionalCyberPortfolio() {
                 </p>
               </div> */}
 
-              <div className="space-y-6">
+              <div className="space-y-6 text-center">
                 {[
                   {
                     icon: Mail,
@@ -519,7 +519,7 @@ export default function ProfessionalCyberPortfolio() {
                     value: "marioaparcero@gmail.com",
                     link: "mailto:marioaparcero@gmail.com",
                     subtitle: "Contacto Directo",
-                    description: "Respuesta garantizada en 24 horas"
+                    //description: "Respuesta garantizada en 24 horas"
                   },
                   {
                     icon: Github,
@@ -527,7 +527,7 @@ export default function ProfessionalCyberPortfolio() {
                     value: "marioaparcero",
                     link: "https://github.com/marioaparcero",
                     subtitle: "Proyectos Open Source",
-                    description: "Explora mis repositorios y contribuciones"
+                    //description: "Explora mis repositorios y contribuciones"
                   },
                   {
                     icon: Linkedin,
@@ -535,32 +535,25 @@ export default function ProfessionalCyberPortfolio() {
                     value: "marioaparcero",
                     link: "https://www.linkedin.com/in/marioaparcero/",
                     subtitle: "Red Profesional",
-                    description: "Conecta conmigo profesionalmente"
+                    //description: "Conecta conmigo profesionalmente"
                   },
                 ].map((contact, index) => (
                   <Card
                     key={index}
                     className="bg-slate-900/70 border-blue-500/20 backdrop-blur-sm hover:border-blue-400/40 transition-all duration-300 group"
                   >
-                    <CardContent className="p-6">
-                      <div className="flex items-start space-x-4">
-                        <div className="flex-shrink-0">
-                          <contact.icon className="h-8 w-8 text-blue-400 group-hover:text-cyan-400 transition-colors" />
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="text-lg font-semibold text-white mb-1">{contact.title}</h4>
-                          <a
-                            href={contact.link}
-                            target={contact.link.startsWith("http") ? "_blank" : undefined}
-                            rel={contact.link.startsWith("http") ? "noopener noreferrer" : undefined}
-                            className="text-blue-400 hover:text-cyan-400 transition-colors font-mono text-sm"
-                          >
-                            {contact.value}
-                          </a>
-                          <p className="text-xs text-blue-300 mt-1">{contact.subtitle}</p>
-                          <p className="text-xs text-slate-400 mt-2">{contact.description}</p>
-                        </div>
-                      </div>
+                    <CardContent className="pt-8 pb-8">
+                      <contact.icon className="h-10 w-10 text-blue-400 mx-auto mb-2 group-hover:text-cyan-400 transition-colors" />
+                      <h3 className="text-xl font-semibold text-white mb-2">{contact.title}</h3>
+                      <a
+                        href={contact.link}
+                        target={contact.link.startsWith("http") ? "_blank" : undefined}
+                        rel={contact.link.startsWith("http") ? "noopener noreferrer" : undefined}
+                        className="text-blue-400 hover:text-cyan-400 transition-colors font-mono"
+                      >
+                        {contact.value}
+                      </a>
+                      <p className="text-xs text-slate-400 mt-2">{contact.subtitle}</p>
                     </CardContent>
                   </Card>
                 ))}
