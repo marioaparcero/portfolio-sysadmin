@@ -494,113 +494,150 @@ export default function ProfessionalCyberPortfolio() {
 
       {/* Contact Section */}
       <section id="contacto" className="py-24 px-6 relative z-10">
-        <div className="container mx-auto max-w-4xl">
+        <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Contacto</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto"></div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-            {[
-              {
-                icon: Mail,
-                title: "Email",
-                value: "marioaparcero@gmail.com",
-                link: "mailto:marioaparcero@gmail.com",
-                subtitle: "Contacto Directo",
-              },
-              {
-                icon: Github,
-                title: "GitHub",
-                value: "marioaparcero",
-                link: "https://github.com/marioaparcero",
-                subtitle: "Proyectos Open Source",
-              },
-              {
-                icon: Linkedin,
-                title: "LinkedIn",
-                value: "marioaparcero",
-                link: "https://www.linkedin.com/in/marioaparcero/",
-                subtitle: "Red Profesional",
-              },
-            ].map((contact, index) => (
-              <Card
-                key={index}
-                className="bg-slate-900/70 border-blue-500/20 backdrop-blur-sm hover:border-blue-400/40 transition-all duration-300 group"
-              >
-                <CardContent className="pt-8 pb-8">
-                  <contact.icon className="h-12 w-12 text-blue-400 mx-auto mb-4 group-hover:text-cyan-400 transition-colors" />
-                  <h3 className="text-xl font-semibold text-white mb-2">{contact.title}</h3>
-                  <a
-                    href={contact.link}
-                    target={contact.link.startsWith("http") ? "_blank" : undefined}
-                    rel={contact.link.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="text-blue-400 hover:text-cyan-400 transition-colors font-mono"
-                  >
-                    {contact.value}
-                  </a>
-                  <p className="text-xs text-slate-400 mt-2">{contact.subtitle}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Left Column - Contact Info */}
+            <div className="space-y-8">
+              {/* <div className="mb-8">
+                <h3 className="text-2xl font-semiboldld text-white mb-4">Conecta Conmigo</h3>
+                <p className="text-slate-300 leading-relaxed">
+                  ¿Tienes un proyecto en mente? Me especializo en administración de sistemas,
+                  ciberseguridad e infraestructura cloud. Hablemos sobre cómo puedo ayudarte.
+                </p>
+              </div> */}
 
-          {/* Contact Form */}
-          <div className="mt-16">
-            <Card className="bg-slate-900/70 border-blue-500/20 backdrop-blur-sm max-w-2xl mx-auto">
-              <CardHeader>
-                <CardTitle className="text-blue-400 text-2xl text-center">Envíame un Mensaje</CardTitle>
-                <CardDescription className="text-slate-300 text-center">
-                  ¿Tienes un proyecto en mente? Hablemos sobre cómo puedo ayudarte.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                {state.succeeded ? (
-                  <p className="text-green-400 text-center text-lg py-8">¡Mensaje enviado! Te contactaré pronto.</p>
-                ) : (
-                  <form
-                    className="space-y-6"
-                    onSubmit={(e) => {
-                      if (!captchaValue) {
-                        e.preventDefault()
-                        alert("Por favor, verifica que no eres un robot.")
-                        return
-                      }
-                      handleSubmit(e)
-                    }}
+              <div className="space-y-6">
+                {[
+                  {
+                    icon: Mail,
+                    title: "Email",
+                    value: "marioaparcero@gmail.com",
+                    link: "mailto:marioaparcero@gmail.com",
+                    subtitle: "Contacto Directo",
+                    description: "Respuesta garantizada en 24 horas"
+                  },
+                  {
+                    icon: Github,
+                    title: "GitHub",
+                    value: "marioaparcero",
+                    link: "https://github.com/marioaparcero",
+                    subtitle: "Proyectos Open Source",
+                    description: "Explora mis repositorios y contribuciones"
+                  },
+                  {
+                    icon: Linkedin,
+                    title: "LinkedIn",
+                    value: "marioaparcero",
+                    link: "https://www.linkedin.com/in/marioaparcero/",
+                    subtitle: "Red Profesional",
+                    description: "Conecta conmigo profesionalmente"
+                  },
+                ].map((contact, index) => (
+                  <Card
+                    key={index}
+                    className="bg-slate-900/70 border-blue-500/20 backdrop-blur-sm hover:border-blue-400/40 transition-all duration-300 group"
                   >
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-blue-400 mb-2">
-                          Nombre *
-                        </label>
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          required
-                          className="w-full px-4 py-3 bg-slate-800/50 border border-blue-500/30 rounded-lg text-white placeholder-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 focus:outline-none transition-all duration-300"
-                          placeholder="Tu nombre completo"
-                        />
-                        <ValidationError prefix="Nombre" field="name" errors={state.errors} />
+                    <CardContent className="p-6">
+                      <div className="flex items-start space-x-4">
+                        <div className="flex-shrink-0">
+                          <contact.icon className="h-8 w-8 text-blue-400 group-hover:text-cyan-400 transition-colors" />
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-white mb-1">{contact.title}</h4>
+                          <a
+                            href={contact.link}
+                            target={contact.link.startsWith("http") ? "_blank" : undefined}
+                            rel={contact.link.startsWith("http") ? "noopener noreferrer" : undefined}
+                            className="text-blue-400 hover:text-cyan-400 transition-colors font-mono text-sm"
+                          >
+                            {contact.value}
+                          </a>
+                          <p className="text-xs text-blue-300 mt-1">{contact.subtitle}</p>
+                          <p className="text-xs text-slate-400 mt-2">{contact.description}</p>
+                        </div>
                       </div>
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-blue-400 mb-2">
-                          Email *
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          required
-                          className="w-full px-4 py-3 bg-slate-800/50 border border-blue-500/30 rounded-lg text-white placeholder-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 focus:outline-none transition-all duration-300"
-                          placeholder="tu@email.com"
-                        />
-                        <ValidationError prefix="Email" field="email" errors={state.errors} />
-                      </div>
-                    </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
 
-                    {/* <div>
+              {/* Professional Notice */}
+              {/* <div className="mt-8">
+                <div className="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 backdrop-blur-sm">
+                  <div className="flex items-center mb-3">
+                    <Lock className="h-5 w-5 text-blue-400 mr-2" />
+                    <span className="text-blue-400 font-semibold">COMUNICACIÓN PROFESIONAL</span>
+                  </div>
+                  <p className="text-slate-300 text-sm leading-relaxed">
+                    Disponible para consultas sobre administración de sistemas, ciberseguridad e infraestructura cloud.
+                    Todas las comunicaciones son tratadas con confidencialidad.
+                  </p>
+                </div>
+              </div> */}
+            </div>
+
+            {/* Right Column - Contact Form */}
+            <div>
+              <Card className="bg-slate-900/70 border-blue-500/20 backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="text-blue-400 text-2xl">Envíame un Mensaje</CardTitle>
+                  <CardDescription className="text-slate-300">
+                    {/* ¿Tienes un proyecto en mente? Hablemos sobre cómo puedo ayudarte. */}
+                    Completa el formulario y te contactaré lo antes posible.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {state.succeeded ? (
+                    <p className="text-green-400 text-center text-lg py-8">¡Mensaje enviado! Te contactaré pronto.</p>
+                  ) : (
+                    <form
+                      className="space-y-6"
+                      onSubmit={(e) => {
+                        if (!captchaValue) {
+                          e.preventDefault()
+                          alert("Por favor, verifica que no eres un robot.")
+                          return
+                        }
+                        handleSubmit(e)
+                      }}
+                    >
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <label htmlFor="name" className="block text-sm font-medium text-blue-400 mb-2">
+                            Nombre *
+                          </label>
+                          <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            required
+                            className="w-full px-4 py-3 bg-slate-800/50 border border-blue-500/30 rounded-lg text-white placeholder-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 focus:outline-none transition-all duration-300"
+                            placeholder="Tu nombre completo"
+                          />
+                          <ValidationError prefix="Nombre" field="name" errors={state.errors} />
+                        </div>
+                        <div>
+                          <label htmlFor="email" className="block text-sm font-medium text-blue-400 mb-2">
+                            Email *
+                          </label>
+                          <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                            className="w-full px-4 py-3 bg-slate-800/50 border border-blue-500/30 rounded-lg text-white placeholder-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 focus:outline-none transition-all duration-300"
+                            placeholder="tu@email.com"
+                          />
+                          <ValidationError prefix="Email" field="email" errors={state.errors} />
+                        </div>
+                      </div>
+
+                      {/* <div>
                       <label htmlFor="company" className="block text-sm font-medium text-blue-400 mb-2">
                         Empresa / Organización
                       </label>
@@ -635,61 +672,62 @@ export default function ProfessionalCyberPortfolio() {
                       <ValidationError prefix="Asunto" field="subject" errors={state.errors} />
                     </div> */}
 
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-blue-400 mb-2">
-                        Mensaje *
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        rows={5}
-                        required
-                        className="w-full px-4 py-3 bg-slate-800/50 border border-blue-500/30 rounded-lg text-white placeholder-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 focus:outline-none transition-all duration-300 resize-none"
-                        placeholder="Cuéntame sobre tu proyecto o consulta..."
-                      />
-                      <ValidationError prefix="Mensaje" field="message" errors={state.errors} />
-                    </div>
-
-                    <div className="flex items-start space-x-3">
-                      <input
-                        type="checkbox"
-                        id="privacy"
-                        name="privacy"
-                        required
-                        className="mt-1 w-4 h-4 text-blue-600 bg-slate-800 border-blue-500/30 rounded focus:ring-blue-400 focus:ring-2"
-                      />
-                      <label htmlFor="privacy" className="text-sm text-slate-300">
-                        Acepto que mis datos sean utilizados para responder a mi consulta de acuerdo con la política de
-                        privacidad. *
-                      </label>
-                      <ValidationError prefix="Privacidad" field="privacy" errors={state.errors} />
-                    </div>
-
-                    <div className="flex justify-center">
-                      <ReCAPTCHA
-                        sitekey="6LetO1YrAAAAAEkFEnN21NnTY_f-67sM_AF5TceA"
-                        onChange={setCaptchaValue}
-                        theme="dark"
-                      />
-                    </div>
-
-                    <Button
-                      type="submit"
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg border border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 font-medium"
-                      disabled={state.submitting}
-                    >
-                      <Mail className="mr-2 h-5 w-5" />
-                      {state.submitting ? "Enviando..." : "Enviar Mensaje"}
-                    </Button>
-                    {Array.isArray(state.errors) && state.errors.length > 0 && (
-                      <div className="text-red-400 text-center mt-2">
-                        Ha ocurrido un error. Por favor, revisa los campos e inténtalo de nuevo.
+                      <div>
+                        <label htmlFor="message" className="block text-sm font-medium text-blue-400 mb-2">
+                          Mensaje *
+                        </label>
+                        <textarea
+                          id="message"
+                          name="message"
+                          rows={5}
+                          required
+                          className="w-full px-4 py-3 bg-slate-800/50 border border-blue-500/30 rounded-lg text-white placeholder-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 focus:outline-none transition-all duration-300 resize-none"
+                          placeholder="Cuéntame sobre tu proyecto o consulta..."
+                        />
+                        <ValidationError prefix="Mensaje" field="message" errors={state.errors} />
                       </div>
-                    )}
-                  </form>
-                )}
-              </CardContent>
-            </Card>
+
+                      <div className="flex items-start space-x-3">
+                        <input
+                          type="checkbox"
+                          id="privacy"
+                          name="privacy"
+                          required
+                          className="mt-1 w-4 h-4 text-blue-600 bg-slate-800 border-blue-500/30 rounded focus:ring-blue-400 focus:ring-2"
+                        />
+                        <label htmlFor="privacy" className="text-sm text-slate-300">
+                          Acepto que mis datos sean utilizados para responder a mi consulta de acuerdo con la política de
+                          privacidad. *
+                        </label>
+                        <ValidationError prefix="Privacidad" field="privacy" errors={state.errors} />
+                      </div>
+
+                      <div className="flex justify-center">
+                        <ReCAPTCHA
+                          sitekey="6LetO1YrAAAAAEkFEnN21NnTY_f-67sM_AF5TceA"
+                          onChange={setCaptchaValue}
+                          theme="dark"
+                        />
+                      </div>
+
+                      <Button
+                        type="submit"
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg border border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 font-medium"
+                        disabled={state.submitting}
+                      >
+                        <Mail className="mr-2 h-5 w-5" />
+                        {state.submitting ? "Enviando..." : "Enviar Mensaje"}
+                      </Button>
+                      {Array.isArray(state.errors) && state.errors.length > 0 && (
+                        <div className="text-red-400 text-center mt-2">
+                          Ha ocurrido un error. Por favor, revisa los campos e inténtalo de nuevo.
+                        </div>
+                      )}
+                    </form>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
           </div>
 
           {/* Professional Notice */}
@@ -702,9 +740,10 @@ export default function ProfessionalCyberPortfolio() {
               <p className="text-slate-300 text-sm leading-relaxed">
                 Disponible para consultas sobre administración de sistemas, ciberseguridad e infraestructura cloud.
                 Respuesta garantizada en 24 horas.
+                {/* Todas las comunicaciones son tratadas con confidencialidad. */}
               </p>
             </div>
-          </div>
+          </div>                
         </div>
       </section>
 
